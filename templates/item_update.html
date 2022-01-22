@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Редактирование статьи {{ article.title }}
+{% endblock %}
+
+{% block body %}
+    {% if set == true %}
+      <div class="container mt-5">
+        <h1>Редактирование статьи</h1>
+        <form method="post">
+            <input type="text" name="title" id="title" class="form-control" value="{{ article.title }}" placeholder="Введите название"><br>
+            <textarea name="intro" id="intro" class="form-control" placeholder="Введите анонс">{{ article.intro }}</textarea><br>
+            <textarea name="text" id="text" class="form-control" placeholder="Введите основной текст">{{ article.text }}</textarea><br>
+            <input type="submit" class="btn btn-success" value="Обновить">
+        </form>
+      </div>
+    {% else %}
+    <p><b>Для редактирования статьи вы должны быть зарегистрированы</b></p>
+    {% endif %}
+{% endblock %}

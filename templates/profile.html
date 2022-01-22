@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Профиль
+{% endblock %}
+
+{% block body %}
+  <div class="container mt-5">
+    <h1>Добро пожаловать к нам на огонёк {{ name }}! Ниже ты можешь увидеть перечень своих публикаций</h1>
+      {% if name is defined %}
+          {% for el in articles %}
+          <div class="alert alert-info">
+              <h2>{{ el.title }}</h2>
+              <p>{{ el.intro }}</p>
+              <p><b>Дата: {{ el.date.date() }}</b></p>
+          </div>
+          {% endfor %}
+        {% else %}
+        <p>К сожалению на сайте еще нет твоих статей</p>
+      {% endif %}
+  </div>
+{% endblock %}

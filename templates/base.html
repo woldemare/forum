@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <!-- The page supports both dark and light color schemes,
+         and the page author prefers / default is light. -->
+    <meta name="color-scheme" content="light dark">
+    <!-- Bootstrap CSS (as per normal) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- And add the Bootstrap-Dark-plugin Variant CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-dark-5@1.1.3/dist/css/bootstrap-dark-plugin.min.css" rel="stylesheet">
+    <title>{% block title %}{% endblock %}</title>
+    <meta name="theme-color" content="#111111" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#eeeeee" media="(prefers-color-scheme: dark)">
+</head>
+<body>
+    <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
+      <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
+        <span class="fs-2">FREE FORUM</span>
+      </a>
+      <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
+        <a class="me-3 py-2 text-light text-decoration-none" href="/">Главная</a>
+        <a class="me-3 py-2 text-light text-decoration-none" href="/item">Список статей</a>
+        {% if not current_user.is_authenticated %}
+        <a class="me-3 py-2 text-light text-decoration-none" href="{{ url_for('login') }}">Вход</a>
+        <a class="me-3 py-2 text-light text-decoration-none" href="{{ url_for('signup') }}">Регистрация</a>
+        {% endif %}
+        {% if current_user.is_authenticated %}
+        <a class="me-3 py-2 text-light text-decoration-none" href="{{ url_for('profile') }}">Профиль</a>
+        {% endif %}
+        {% if current_user.is_authenticated %}
+        <a class="me-3 py-2 text-light text-decoration-none" href="{{ url_for('logout') }}">Выход</a>
+        {% endif %}
+      </nav>
+        <a class="btn btn-warning" href="/create_article">Создать статью</a>
+    </div>
+    {% block body %}{% endblock %}
+</body>
+</html>

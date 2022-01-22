@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}
+Вход
+{% endblock %}
+
+{% block body %}
+<div class="column is-4 is-offset-4">
+    <div class="container mt-5">
+        <h1 class="title">Вход</h1>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <div class="notification is-danger">
+            {{ messages[0] }}
+        </div>
+        {% endif %}
+        {% endwith %}
+        <form method="POST" action="/login">
+            <div class="field">
+                <div class="control">
+                    <input class="form-control" type="email" name="email" placeholder="Твой Email" autofocus=""><br>
+                </div>
+            </div>
+            <div class="field">
+                <div class="control">
+                    <input class="form-control" type="password" name="password" placeholder="Твой пароль"><br>
+                </div>
+            </div>
+            <div class="field">
+                <label class="checkbox">
+                    <input name="remember" value="1" type="checkbox" id="auth-remember" checked="checked">
+                    Запомнить меня
+                </label>
+            </div>
+            <input type="submit" class="btn btn-success" value="Вход">
+        </form>
+    </div>
+</div>
+{% endblock %}
